@@ -54,7 +54,7 @@ function getConversationId(client) {
 }
 
 describe('Test Azure Bot', function(){
-    this.timeout(60000);    
+    this.timeout(480000);    
     it('Check deployed bot answer', async function(){
         const directLineClient = await getDirectLineClient();    
         const conversationId = await getConversationId(directLineClient);
@@ -64,5 +64,16 @@ describe('Test Azure Bot', function(){
         console.info(messages);
         const result = messages.filter((message) => message.text.includes('you said'));                
         assert(result[0].text == `you said "${ userMessage }" 0`, `test fail`);
+    });
+
+    it('Check deployed bot answer 2', async function () {
+        const directLineClient = await getDirectLineClient();
+        const conversationId = await getConversationId(directLineClient);
+        await sendMessage(directLineClient, conversationId);
+        const messages = await getMessages(directLineClient, conversationId);
+        console.info('Check deployed bot answer 2 answers:');
+        console.info(messages);
+        const result = messages.filter((message) => message.text.includes('you said'));
+        assert(result[0].text == `you said "${userMessage}" 0`, `test fail`);
     });
 });
