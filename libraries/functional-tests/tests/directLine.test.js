@@ -60,6 +60,8 @@ describe('Test Azure Bot', function(){
         const conversationId = await getConversationId(directLineClient);
         await sendMessage(directLineClient, conversationId);
         const messages = await getMessages(directLineClient, conversationId);
+        console.info('Check deployed bot answer answers:');
+        console.info(messages);
         const result = messages.filter((message) => message.text.includes('you said'));                
         assert(result[0].text == `you said "${ userMessage }" 0`, `test fail`);
     });
