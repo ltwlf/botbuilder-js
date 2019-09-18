@@ -64,7 +64,8 @@ describe('Test Azure Bot', function(){
         console.info('Check deployed bot answer --');
         console.info('directLineSecret: ' + directLineSecret);
         console.info('conversationId: ' + conversationId);
-        console.info('messages: ' + messages);
+        console.info('messages: ');
+        console.info(messages);
 
         const result = messages.filter((message) => message.text.includes('you said'));                
         assert(result[0].text == `you said "${ userMessage }" 0`, `test fail`);
@@ -79,7 +80,8 @@ describe('Test Azure Bot', function(){
         console.info('Check deployed bot answer 2 --');
         console.info('directLineSecret: ' + directLineSecret);
         console.info('conversationId: ' + conversationId);
-        console.info('messages: ' + messages);
+        console.info('messages: ');
+        console.info(messages);
 
         const result = messages.filter((message) => message.text.includes('you said'));
         assert(result[0].text == `you said "${userMessage}" 0`, `test fail`);
