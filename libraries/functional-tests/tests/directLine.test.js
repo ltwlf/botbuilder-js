@@ -26,7 +26,7 @@ function getDirectLineClient() {
 async function sendMessage(client, conversationId) {       
     let status;
     do{
-        console.info('sendMessage timestamp: ' + Date.now().format('yyyy-mm-dd HH:mm:ss.fff'));
+        console.info('sendMessage timestamp: ' + Date.now());
         await client.Conversations.Conversations_PostMessage({
             conversationId: conversationId,
             message: {
