@@ -26,6 +26,7 @@ function getDirectLineClient() {
 async function sendMessage(client, conversationId) {       
     let status;
     do{
+        console.info('sendMessage timestamp: ' + Date.now());
         await client.Conversations.Conversations_PostMessage({
             conversationId: conversationId,
             message: {
@@ -34,8 +35,10 @@ async function sendMessage(client, conversationId) {
             }
         }).then((result) => {
             status = result.status;
+            console.info('result.status: ' + status);
         }).catch((err)=>{
             status = err.status;
+            console.info('err.status: ' + status);
         }); 
     }while(status == 502);
 }
