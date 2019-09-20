@@ -26,7 +26,7 @@ function getDirectLineClient() {
 async function sendMessage(client, conversationId) {       
     let status;
     do{
-        console.info('sendMessage timestamp: ' + Date.now());
+        console.info('sendMessage timestamp: ' + Date.now().toISOString());
         await client.Conversations.Conversations_PostMessage({
             conversationId: conversationId,
             message: {
@@ -61,10 +61,11 @@ describe('Test Azure Bot', function(){
     it('Check deployed bot answer', async function(){
         const directLineClient = await getDirectLineClient();    
         const conversationId = await getConversationId(directLineClient);
+
+        console.info('Check deployed bot answer - debug');
         await sendMessage(directLineClient, conversationId);
         const messages = await getMessages(directLineClient, conversationId);
 
-        console.info('Check deployed bot answer --');
         console.info('directLineSecret: ' + directLineSecret);
         console.info('conversationId: ' + conversationId);
         console.info('messages: ');
@@ -77,10 +78,11 @@ describe('Test Azure Bot', function(){
     it('Check deployed bot answer 2', async function () {
         const directLineClient = await getDirectLineClient();
         const conversationId = await getConversationId(directLineClient);
+
+        console.info('Check deployed bot answer 2 - debug');
         await sendMessage(directLineClient, conversationId);
         const messages = await getMessages(directLineClient, conversationId);
 
-        console.info('Check deployed bot answer 2 --');
         console.info('directLineSecret: ' + directLineSecret);
         console.info('conversationId: ' + conversationId);
         console.info('messages: ');
